@@ -1,0 +1,22 @@
+<div class="w-100 mx-auto bg-cons flex-column d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+  <img src="../../../assets/img/Logo-grande-consware-2.png" class="mb-3" alt="">
+  <h2 class="white">
+    Consware To-Do
+  </h2>
+  <form [formGroup]="form" class="d-flex flex-column align-items-center justify-content-center">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre de usuario</mat-label>
+      <input matInput  formControlName="user">
+
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Escriba su contrasena</mat-label>
+      <input matInput formControlName="pass" [type]="hide ? 'password' : 'text'">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+    <button class="w-100" (click)="sendForm()" mat-raised-button [disabled]="!form.valid">Enviar</button>
+  </form>
+</div>

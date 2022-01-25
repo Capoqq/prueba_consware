@@ -1,0 +1,51 @@
+<div class="w-100 bg-cons" style="min-height: 100vh;">
+  <app-loguot></app-loguot>
+  <div class="d-flex pt-4">
+    <div class="col-6 text-center d-flex flex-column align-items-center">
+      <img src="../../../assets/img/Logo-grande-consware-2.png" alt="">
+      <h2 class="white">Hola esta es tu vista general de tareas</h2>
+    </div>
+    <div class="col-6 d-flex justify-content-center align-items-center">
+
+
+      <div class=" pe-3">
+        <p class="white">
+          Para crear una nueva tarea
+        </p>
+        <button mat-raised-button routerLink="tarea" style="max-width: 200px;">
+          Crear nueva tarea
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="w-100">
+    <p *ngIf="listaTareas.length == 0">Opps aun no hay tareas creadas</p>
+    <table class="table white" *ngIf="listaTareas.length > 0">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Informador</th>
+          <th scope="col">Descripcion</th>
+          <th scrope="col">Estado</th>
+          <th scope="col">Accion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tarea of listaTareas">
+          <th scope="row">{{tarea.id}}</th>
+          <td>{{tarea.informador}}</td>
+
+          <td>{{tarea.descripcion}}</td>
+          <td>
+            {{tarea.estadoTexto}}
+          </td>
+          <td>
+          <button mat-raised-button (click)="seeMore(tarea.id)">
+            Ver mas
+          </button></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>

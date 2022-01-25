@@ -1,0 +1,51 @@
+<div class="bg-cons pt-4 px-5" style="min-height: 100vh;">
+  <app-loguot></app-loguot>
+  <button routerLink="/principal" class="mb-2" mat-raised-button>
+    Atras
+  </button>
+    <h1 class="white" *ngIf="!edicion">
+      Formulario de creacion de tarea
+    </h1>
+    <h1 class="white" *ngIf="edicion">
+      Formulario de edicion de tarea
+    </h1>
+    <form [formGroup]="form" class="d-flex w-100 flex-column">
+<div class="col-4">
+  <mat-form-field appearance="fill" class="pe-3">
+    <mat-label>Informador</mat-label>
+    <input matInput formControlName="informador">
+  </mat-form-field>
+
+</div>
+<div class="col-4">
+
+  <mat-form-field appearance="fill">
+    <mat-label>Descripcion</mat-label>
+    <textarea matInput formControlName="descripcion"></textarea>
+  </mat-form-field>
+</div>
+<div class="col-4"  *ngIf="edicion">
+
+  <mat-form-field appearance="fill">
+    <mat-label>Estado de la tarea</mat-label>
+    <mat-select formControlName="estado">
+      <mat-option *ngFor="let estado of estadosTarea"  [value]="estado.value">
+        {{estado.descripcion}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div class="w-100">
+
+  <button *ngIf="!edicion" [disabled]="!form.valid" mat-raised-button (click)="createTask()">
+    Crear Tarea
+  </button>
+  <button *ngIf="edicion" class="me-2" [disabled]="!form.valid" mat-raised-button (click)="updateTask()">
+    Actualizar Tarea
+  </button>
+  <button *ngIf="edicion" class="ms-2" color="warn" mat-raised-button (click)="deleteTask()">
+    Eliminar Tarea
+  </button>
+</div>
+    </form>
+</div>
